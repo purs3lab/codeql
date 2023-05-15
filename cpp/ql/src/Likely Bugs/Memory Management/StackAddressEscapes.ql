@@ -26,6 +26,12 @@ predicate stackAddressEscapes(AssignExpr assignExpr, Expr source, boolean isLoca
 from Expr use, Expr source, boolean isLocal, string msg, string srcStr
 where
   stackAddressEscapes(use, source, isLocal) and
+  isLocal = true and
+  msg = "A stack address ($@) may be assigned to a non-local variable." and
+  srcStr = "source"
+
+  /*
+  stackAddressEscapes(use, source, isLocal) and
   if isLocal = true
   then (
     msg = "A stack address ($@) may be assigned to a non-local variable." and
@@ -34,4 +40,5 @@ where
     msg = "A stack address which arrived via a $@ may be assigned to a non-local variable." and
     srcStr = "parameter"
   )
+  */
 select use, msg, source, srcStr
