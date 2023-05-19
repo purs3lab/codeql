@@ -32,6 +32,7 @@ where
   not cmp.isFromTemplateInstantiation(_) and
   not functionContainsDisabledCode(cmp.getEnclosingFunction()) and
   reachablePointlessComparison(cmp, left, right, value, ss) and
+  value = false and
   // a comparison between an enum and zero is always valid because whether
   // the underlying type of an enum is signed is compiler-dependent
   not exists(Expr e, ConstantZero z |
